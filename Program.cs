@@ -65,82 +65,98 @@ namespace JurasicPark
             // - add the collections of values to the list
             dinoList.Add(dino);
 
-
-
-            // create prompt for getting the dino Name 
-            dino.Name = PromptForString("What is the Dinosaurs name?");
-            // create prompt for getting the dino DietType
-            dino.DietType = PromptForString("Is it a [Carnivore] or a [Herbivore]");
-            // create prompt that logs the current date and time
-            dino.WhenAcquired = DateTime.Now;
-            // create prompt for getting the dino Weight
-            dino.Weight = PromptForInterger("How much does the dinosaur weight in lbs? ");
-            // create prompt for getting the dino EnclosureNumber
-            dino.EnclosureNumber = PromptForInterger("What pen number is the dinosaur be held?");
             // define dino.DinoDescription from the input from the user
-            dino.DinoDescription = ($"{dino.Name}, {dino.DietType}, {dino.WhenAcquired}, {dino.Weight}, {dino.EnclosureNumber}");
+            dino.DinoDescription = ($"NAME: {dino.Name}. TYPE: {dino.DietType}. ACQUIRED: {dino.WhenAcquired}. WEIGHT: {dino.Weight}lbs. LOCATED IN PEN #{dino.EnclosureNumber}");
 
-            Console.WriteLine("");
-            Console.WriteLine("programing in progress...");
 
-            foreach (var saur in dinoList)
+
+            // create bool statement to determine if prog cont.
+            var contProg = true;
+            // create loop to decide next step depending on the user input
+            while (contProg)
             {
-                Console.WriteLine(saur.DinoDescription);
+                // create menu like prompt
+                // "Choose from the menu. [V]eiw the two types of dinos. [A]dd new dino.
+                // [R]emove a dino. [T]ransfer a dino. [S]ummary to display how many dinos.
+                // [Q]uit.
+                Console.WriteLine();
+                Console.WriteLine("Menu options: [V]iew, [A]dd, [R]emove, [T]ransfer, [S]ummary, [Q]uit.");
+                var answer = Console.ReadLine().ToUpper();
+
+
+                //  if input = Q
+                if (answer == "Q")
+                {
+                    //  bool = false // exit
+                    contProg = false;
+                }
+                // else if input = A
+                else if (answer == "A")
+                {
+                    //   prompt name
+                    //   prompt diet
+                    //   prompt when acquired
+                    //   prompt weight
+                    //   prompt enclosure number
+
+                    // create prompt for getting the dino Name 
+                    dino.Name = PromptForString("What is the Dinosaurs name?");
+                    // create prompt for getting the dino DietType
+                    dino.DietType = PromptForString("Is it a [Carnivore] or a [Herbivore]");
+                    // create prompt that logs the current date and time
+                    dino.WhenAcquired = DateTime.Now;
+                    // create prompt for getting the dino Weight
+                    dino.Weight = PromptForInterger("How much does the dinosaur weight in lbs? ");
+                    // create prompt for getting the dino EnclosureNumber
+                    dino.EnclosureNumber = PromptForInterger("What pen number is the dinosaur be held?");
+                }
+                // else if input = T
+                else if (answer == "T")
+                {
+                    //   var dinoTransfer = prompt string for "what dino do you want to transfer?"
+                    var dinoTransfer = PromptForString("which dinosaur do you want to transfer?");
+
+                    //   var dinoToTransfer = dino by name in dino list with the name equal to the name to be transfered
+
+                    //   if null
+                    //   return no dino by that name
+                }
+
+
+
+
+
+
+                // if dino found in park return true
+                // else return NOT FOUND
+
+                // if input = V
+                // Console.WriteLine("{name} is a {diet type}. I was recieved on {date.time}. It weights {weight}.
+                // It is located at {enclosure number}")
+
+
+                //   add properties to dino lsit
+
+                // else if input = R
+                //   var dinoRemove = prompt string for "What dino are you looking for?"
+
+                //   var dinoToRemove = dino by name in dino list with the name equal to the name to be deleted
+                //   if false/null
+                //   return no dino by that name
+
+                //   else dino.remove dino to be deleted
+                //   write dino was removed
+
+
+                //   else newPenNum = prompt for string "what is {dinoToTransfer}'s new pen number?"
+
+                //   dinoToTransfer.EnclosureNum = newPenNum
+
+                // else if input = S
+                //   need them the number for carno and herbos instend..LINQ 
+
+
             }
-
-
-            // if dino found in park return true
-
-            // else return NOT FOUND
-
-
-            // create menu
-            // "Choose from the menu. [V]eiw the two types of dinos. [A]dd new dino.
-            // [R]emove a dino. [T]ransfer a dino. [S]ummary to display how many dinos.
-            // [Q]uit.
-
-            // if input = V
-            // Console.WriteLine("{name} is a {diet type}. I was recieved on {date.time}. It weights {weight}.
-            // It is located at {enclosure number}")
-
-            // else if input = A
-            //   var dino = new dino();
-
-            //   prompt name
-            //   prompt diet
-            //   prompt when acquired
-            //   prompt weight
-            //   prompt enclosure number
-
-            //   add properties to dino lsit
-
-            // else if input = R
-            //   var dinoRemove = prompt string for "What dino are you looking for?"
-
-            //   var dinoToRemove = dino by name in dino list with the name equal to the name to be deleted
-            //   if false/null
-            //   return no dino by that name
-
-            //   else dino.remove dino to be deleted
-            //   write dino was removed
-
-            // else if input = T
-            //   var dinoTransfer = prompt string for "what dino do you want to transfer?"
-
-            //   var dinoToTransfer = dino by name in dino list with the name equal to the name to be transfered
-
-            //   if null
-            //   return no dino by that name
-
-            //   else newPenNum = prompt for string "what is {dinoToTransfer}'s new pen number?"
-
-            //   dinoToTransfer.EnclosureNum = newPenNum
-
-            // else if input = S
-            //   need them the number for carno and herbos instend..LINQ 
-
-            // else if inoput = Q
-            //   bool = false // exit
         }
     }
 }
