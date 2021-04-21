@@ -10,7 +10,7 @@ namespace JurasicPark
         // DietType string get; set;
         public string DietType { get; set; }
         // WhenAcquired string {get; set;}
-        public string WhenAcquired { get; set; }
+        public DateTime WhenAcquired { get; set; } = DateTime.Now;
         // Weight int {get; set;}
         public int Weight { get; set; }
         // EnclosureNumber int {get; set;}
@@ -44,7 +44,7 @@ namespace JurasicPark
             Console.WriteLine(prompt);
 
             int userInput;
-            // - read line and set it as the userInout
+            // - read line and set it as the userIpout
             var validUserInput = Int32.TryParse(Console.ReadLine(), out userInput);
             // - return response
             return userInput;
@@ -54,14 +54,17 @@ namespace JurasicPark
             // display welcome
             DisplayWelcome();
 
+            // create new dinos list hold the values of a dino
+            // - add the collections of values to the list
+
             var dino = new Dino();
 
             // create prompt for getting the dino Name 
             dino.Name = PromptForString("What is the Dinosaurs name?");
             // create prompt for getting the dino DietType
             dino.DietType = PromptForString("Is it a [Carnivore] or a [Herbivore]");
-            // create prompt for getting the dino WhenAcquired
-            dino.WhenAcquired = PromptForString("When did the dinosaur arrive?");
+            // create prompt that logs the current date and time
+            dino.WhenAcquired = DateTime.Now;
             // create prompt for getting the dino Weight
             dino.Weight = PromptForInterger("How much does the dinosaur weight in lbs? ");
             // create prompt for getting the dino EnclosureNumber
@@ -71,20 +74,10 @@ namespace JurasicPark
             Console.WriteLine("programing in progress...");
             Console.WriteLine("");
 
-
             // if dino found in park return true
+
             // else return NOT FOUND
 
-            // display greeting
-
-            // prompt "what is the dinosuar's name?"
-            // prompt "what is its diet type?"
-            // prompt "when was is acquired?"
-            // prompt "what is its weight?"
-            // prompt "what pen is it located in?"
-
-            // create new dinos list to hold the values of a dino
-            // - add the collections of values to the list
 
             // create menu
             // "Choose from the menu. [V]eiw the two types of dinos. [A]dd new dino.
