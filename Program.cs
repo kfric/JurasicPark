@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace JurasicPark
 {
@@ -15,6 +16,9 @@ namespace JurasicPark
         public int Weight { get; set; }
         // EnclosureNumber int {get; set;}
         public int EnclosureNumber { get; set; }
+
+        // Create dinoDescription to hold all the properties of a dino from user input
+        public string DinoDescription { get; set; }
 
     }
     class Program
@@ -55,9 +59,13 @@ namespace JurasicPark
             DisplayWelcome();
 
             // create new dinos list hold the values of a dino
-            // - add the collections of values to the list
-
+            var dinoList = new List<Dino>();
             var dino = new Dino();
+
+            // - add the collections of values to the list
+            dinoList.Add(dino);
+
+
 
             // create prompt for getting the dino Name 
             dino.Name = PromptForString("What is the Dinosaurs name?");
@@ -69,10 +77,17 @@ namespace JurasicPark
             dino.Weight = PromptForInterger("How much does the dinosaur weight in lbs? ");
             // create prompt for getting the dino EnclosureNumber
             dino.EnclosureNumber = PromptForInterger("What pen number is the dinosaur be held?");
+            // define dino.DinoDescription from the input from the user
+            dino.DinoDescription = ($"{dino.Name}, {dino.DietType}, {dino.WhenAcquired}, {dino.Weight}, {dino.EnclosureNumber}");
 
             Console.WriteLine("");
             Console.WriteLine("programing in progress...");
-            Console.WriteLine("");
+
+            foreach (var saur in dinoList)
+            {
+                Console.WriteLine(saur.DinoDescription);
+            }
+
 
             // if dino found in park return true
 
