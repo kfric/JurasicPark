@@ -2,25 +2,75 @@
 
 namespace JurasicPark
 {
+    //       create a class dino
+    class Dino
+    {
+        // Name string {get; set;}
+        public string Name { get; set; }
+        // DietType string get; set;
+        public string DietType { get; set; }
+        // WhenAcquired string {get; set;}
+        public string WhenAcquired { get; set; }
+        // Weight int {get; set;}
+        public int Weight { get; set; }
+        // EnclosureNumber int {get; set;}
+        public int EnclosureNumber { get; set; }
+
+    }
     class Program
     {
+        static void DisplayWelcome()
+        {
+            // greeting to show that the program is currenting running
+            Console.WriteLine("--------------------------------");
+            Console.WriteLine("--- Welcome to Jurassic Park ---");
+            Console.WriteLine("--------------------------------");
+            Console.WriteLine("");
+        }
+        // method to prompt for string response
+        static string PromptForString(string prompt)
+        {
+            // - write line
+            Console.WriteLine(prompt);
+            // - read line and set it as the userInout
+            var userInput = Console.ReadLine();
+            // - return response
+            return userInput;
+        }
+        // method to prompt for int response
+        static int PromptForInterger(string prompt)
+        {
+            // - read line
+            Console.WriteLine(prompt);
+
+            int userInput;
+            // - read line and set it as the userInout
+            var validUserInput = Int32.TryParse(Console.ReadLine(), out userInput);
+            // - return response
+            return userInput;
+        }
         static void Main(string[] args)
         {
-            //       create a class dino
-            // dino - 
-            // Name string {get; set;}
-            // DietType string get; set;
-            // WhenAcquired string {get; set;}
-            // Weight int {get; set;}
-            // EnclosureNumber int {get; set;}
+            // display welcome
+            DisplayWelcome();
 
-            // method to prompt for string response
-            // - read line
-            // - return response
+            var dino = new Dino();
 
-            // method to prompt for int response
-            // - read line
-            // - return response
+            // create prompt for getting the dino Name 
+            dino.Name = PromptForString("What is the Dinosaurs name?");
+            // create prompt for getting the dino DietType
+            dino.DietType = PromptForString("Is it a [Carnivore] or a [Herbivore]");
+            // create prompt for getting the dino WhenAcquired
+            dino.WhenAcquired = PromptForString("When did the dinosaur arrive?");
+            // create prompt for getting the dino Weight
+            dino.Weight = PromptForInterger("How much does the dinosaur weight in lbs? ");
+            // create prompt for getting the dino EnclosureNumber
+            dino.EnclosureNumber = PromptForInterger("What pen number is the dinosaur be held?");
+
+            Console.WriteLine("");
+            Console.WriteLine("programing in progress...");
+            Console.WriteLine("");
+
 
             // if dino found in park return true
             // else return NOT FOUND
