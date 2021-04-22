@@ -171,9 +171,16 @@ namespace JurasicPark
                         Console.WriteLine($"{name} has been removed");
                     }
 
+                }
+                // else if input = S
+                else if (answer == "S")
+                {
+                    var carnivore = dinos.Where(dino => dino.DietType == "carnivore").Count();
+                    var herbivore = dinos.Where(dino => dino.DietType == "herbivore").Count();
 
+                    var dinoType = $"There are {carnivore} Carnivore[s] and {herbivore} Herbivore[s]";
 
-
+                    Console.WriteLine(dinoType);
                 }
 
 
@@ -193,9 +200,6 @@ namespace JurasicPark
 
 
 
-
-                // else if input = S
-                //   need them the number for carno and herbos instend..LINQ 
 
 
             }
