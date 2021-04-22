@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace JurasicPark
 {
@@ -56,7 +57,7 @@ namespace JurasicPark
         static void Main(string[] args)
         {
             // create new dinos list hold the values of a dino
-            var dinoList = new List<Dino>();
+            var dinos = new List<Dino>();
 
             // display welcome
             DisplayWelcome();
@@ -87,12 +88,12 @@ namespace JurasicPark
                 {
 
                     // foreach dinosaur in list
-                    foreach (var monster in dinoList)
+                    foreach (var dino in dinos)
                     {
 
                         // Console.WriteLine("{name} is a {diet type}. I was received on {date.time}. It weights {weight}.
                         // It is located at {enclosure number}")
-                        Console.WriteLine($"{monster.Name}");
+                        Console.WriteLine($"{dino.DinoDescription}");
                     }
 
 
@@ -123,19 +124,61 @@ namespace JurasicPark
 
 
                     // add the collections of values to the list
-                    dinoList.Add(dino);
+                    dinos.Add(dino);
+                }
+                // else if input = T
+                else if (answer == "T")
+                {
+                    //   var dinoTransfer = prompt string for "what dino do you want to transfer?"
+                    var name = PromptForString("The name of the dinosaur you want to transfer: ");
+                    //   var dinoToTransfer = monster by name in monster list with the name equal to 
+                    //    the name to be transferred
+                    Dino foundDino = dinos.FirstOrDefault(dino => dino.Name == name);
+
+                    if (foundDino == null)
+                    {
+                        Console.WriteLine("There are no dinosaurs here by that name");
+                    }
+                    else
+                    {
+                        //   else newPenNum = prompt for string "what is {dinoToTransfer}'s new pen number?"
+                        var newEnclosureNum = PromptForInterger($"What is {name}'s new Enclosure number?");
+
+                        //   dinoTransfer.EnclosureNum = newPenNum
+                        foundDino.EnclosureNumber = newEnclosureNum;
+                    }
+
+                }
+                // else if input = R
+                else if (answer == "R")
+                {
+                    //   var dinoRemove = prompt string for "What dino are you looking for?"
+                    var name = PromptForString("What is the name of the dinosaur that you want remove?");
+                    //   var dinoToRemove = dino by name in dino list with the name equal to the name to be deleted
+                    Dino foundDino = dinos.FirstOrDefault(dino => dino.Name == name);
+
+                    //   if false/null
+                    if (foundDino == null)
+                    {
+                        //   return no dino by that name
+                        Console.WriteLine("There are no dinosaurs by that name");
+                    }
+                    else
+                    {
+                        //   else dino.remove dino to be deleted
+                        dinos.Remove(foundDino);
+                        //   write dino was removed
+                        Console.WriteLine($"{name} has been removed");
+                    }
+
+
+
+
                 }
 
 
 
 
-                // else if input = T
-                //   var dinoTransfer = prompt string for "what dino do you want to transfer?"
-                //   var dinoToTransfer = monster by name in monster list with the name equal to the name to be transferred
-
-                //   else newPenNum = prompt for string "what is {dinoToTransfer}'s new pen number?"
-
-                //   dinoToTransfer.EnclosureNum = newPenNum
 
                 //   if null
                 //   return no dino by that name
@@ -148,15 +191,6 @@ namespace JurasicPark
 
                 //   add properties to dino list
 
-                // else if input = R
-                //   var dinoRemove = prompt string for "What dino are you looking for?"
-
-                //   var dinoToRemove = dino by name in dino list with the name equal to the name to be deleted
-                //   if false/null
-                //   return no dino by that name
-
-                //   else dino.remove dino to be deleted
-                //   write dino was removed
 
 
 
