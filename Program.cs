@@ -19,7 +19,11 @@ namespace JurasicPark
         public int EnclosureNumber { get; set; }
 
         // Create dinoDescription to hold all the properties of a dino from user input
-        public string DinoDescription { get; set; }
+        public string DinoDescription()
+        {
+            var newDinoDescription = $"NAME: {Name}. TYPE: {DietType}. ACQUIRED: {WhenAcquired}. WEIGHT: {Weight}lbs. LOCATED IN PEN #{EnclosureNumber}";
+            return newDinoDescription;
+        }
 
     }
     class Program
@@ -32,6 +36,7 @@ namespace JurasicPark
             Console.WriteLine("--------------------------------");
             Console.WriteLine("");
         }
+
         // method to prompt for string response
         static string PromptForString(string prompt)
         {
@@ -50,9 +55,19 @@ namespace JurasicPark
 
             int userInput;
             // - read line and set it as the userIpout
-            var validUserInput = Int32.TryParse(Console.ReadLine(), out userInput);
-            // - return response
-            return userInput;
+            var goodInput = Int32.TryParse(Console.ReadLine(), out userInput);
+            if (goodInput)
+            {
+                // - return response
+                return userInput;
+            }
+            else
+            {
+                // if input not a number then default to 0
+                Console.WriteLine("Invalid numbers default to 0");
+                return 0;
+            }
+
         }
         static void Main(string[] args)
         {
@@ -91,12 +106,13 @@ namespace JurasicPark
                         // foreach dinosaur in list
                         foreach (var monster in dinos)
                         {
-
                             // Console.WriteLine("{name} is a {diet type}. I was received on {date.time}. It weights {weight}.
                             // It is located at {enclosure number}")
-                            Console.WriteLine($"{monster.DinoDescription}");
+                            Console.WriteLine(monster.DinoDescription());
                         }
-                        break;
+                        var WhenAcquired = dinos.OrderBy(monster => monster.WhenAcquired);
+
+                        break; 
 
 
 
@@ -122,7 +138,7 @@ namespace JurasicPark
                         // create prompt for getting the dino EnclosureNumber
                         dino.EnclosureNumber = PromptForInterger("What pen number is the dinosaur be held?");
                         // define dino.DinoDescription from the input from the user
-                        dino.DinoDescription = ($"NAME: {dino.Name}. TYPE: {dino.DietType}. ACQUIRED: {dino.WhenAcquired}. WEIGHT: {dino.Weight}lbs. LOCATED IN PEN #{dino.EnclosureNumber}");
+                        // dino.DinoDescription = ($"NAME: {dino.Name}. TYPE: {dino.DietType}. ACQUIRED: {dino.WhenAcquired}. WEIGHT: {dino.Weight}lbs. LOCATED IN PEN #{dino.EnclosureNumber}");
 
 
                         // add the collections of values to the list
@@ -191,6 +207,7 @@ namespace JurasicPark
                         var dinoType = $"There are {carnivore} Carnivore[s] and {herbivore} Herbivore[s]";
 
                         Console.WriteLine(dinoType);
+
 
                         break;
 
