@@ -76,130 +76,126 @@ namespace JurasicPark
                 // read response
                 var answer = Console.ReadLine().ToUpper();
 
+                // covert to switch statement to clean up???
 
-                //  if input = Q
-                if (answer == "Q")
+                switch (answer)
                 {
-                    //  bool = false // exit
-                    contProg = false;
+                    //  if input = Q
+                    case "Q":
+                        //  bool = false // exit
+                        contProg = false;
+                        break;
+
+                    // if input = V
+                    case "V":
+                        // foreach dinosaur in list
+                        foreach (var monster in dinos)
+                        {
+
+                            // Console.WriteLine("{name} is a {diet type}. I was received on {date.time}. It weights {weight}.
+                            // It is located at {enclosure number}")
+                            Console.WriteLine($"{monster.DinoDescription}");
+                        }
+                        break;
+
+
+
+                    // else if input = A
+                    case "A":
+
+                        //   prompt name
+                        //   prompt diet
+                        //   prompt when acquired
+                        //   prompt weighta
+                        //   prompt enclosure number
+
+                        var dino = new Dino();
+
+                        // create prompt for getting the dino Name 
+                        dino.Name = PromptForString("What is the Dinosaurs name?");
+                        // create prompt for getting the dino DietType
+                        dino.DietType = PromptForString("Is it a [C]arnivore or a [H]erbivore");
+                        // create prompt that logs the current date and time
+                        dino.WhenAcquired = DateTime.Now;
+                        // create prompt for getting the dino Weight
+                        dino.Weight = PromptForInterger("How much does the dinosaur weight in lbs? ");
+                        // create prompt for getting the dino EnclosureNumber
+                        dino.EnclosureNumber = PromptForInterger("What pen number is the dinosaur be held?");
+                        // define dino.DinoDescription from the input from the user
+                        dino.DinoDescription = ($"NAME: {dino.Name}. TYPE: {dino.DietType}. ACQUIRED: {dino.WhenAcquired}. WEIGHT: {dino.Weight}lbs. LOCATED IN PEN #{dino.EnclosureNumber}");
+
+
+                        // add the collections of values to the list
+                        dinos.Add(dino);
+
+                        break;
+
+                    // else if input = T
+                    case "T":
+
+                        //   var dinoTransfer = prompt string for "what dino do you want to transfer?"
+                        var name = PromptForString("The name of the dinosaur you want to transfer: ");
+                        //   var dinoToTransfer = monster by name in monster list with the name equal to 
+                        //    the name to be transferred
+                        Dino foundDino = dinos.FirstOrDefault(dino => dino.Name == name);
+
+                        if (foundDino == null)
+                        {
+                            Console.WriteLine("There are no dinosaurs here by that name");
+                        }
+                        else
+                        {
+                            //   else newPenNum = prompt for string "what is {dinoToTransfer}'s new pen number?"
+                            var newEnclosureNum = PromptForInterger($"What is {name}'s new Enclosure number?");
+
+                            //   dinoTransfer.EnclosureNum = newPenNum
+                            foundDino.EnclosureNumber = newEnclosureNum;
+                        }
+
+                        break;
+
+
+                    // else if input = R
+                    case "R":
+
+                        //   var dinoRemove = prompt string for "What dino are you looking for?"
+                        var dinoToRemove = PromptForString("What is the name of the dinosaur that you want remove?");
+                        //   var dinoToRemove = dino by name in dino list with the name equal to the name to be deleted
+                        Dino foundDinoToRemove = dinos.FirstOrDefault(dino => dino.Name == dinoToRemove);
+
+                        //   if false/null
+                        if (foundDinoToRemove == null)
+                        {
+                            //   return no dino by that name
+                            Console.WriteLine("There are no dinosaurs by that name");
+                        }
+                        else
+                        {
+                            //   else dino.remove dino to be deleted
+                            dinos.Remove(foundDinoToRemove);
+                            //   write dino was removed
+                            Console.WriteLine($"{dinoToRemove} has been removed");
+                        }
+
+                        break;
+
+
+                    // else if input = S
+                    case "S":
+
+                        // carnivore is equal to the count of inputs "c" in dino.DietType
+                        var carnivore = dinos.Where(dino => dino.DietType == "c").Count();
+                        // carnivore is equal to the count of inputs "h" in dino.DietType
+                        var herbivore = dinos.Where(dino => dino.DietType == "h").Count();
+
+                        var dinoType = $"There are {carnivore} Carnivore[s] and {herbivore} Herbivore[s]";
+
+                        Console.WriteLine(dinoType);
+
+                        break;
+
+
                 }
-                // if input = V
-                else if (answer == "V")
-                {
-
-                    // foreach dinosaur in list
-                    foreach (var dino in dinos)
-                    {
-
-                        // Console.WriteLine("{name} is a {diet type}. I was received on {date.time}. It weights {weight}.
-                        // It is located at {enclosure number}")
-                        Console.WriteLine($"{dino.DinoDescription}");
-                    }
-
-
-                }
-                // else if input = A
-                else if (answer == "A")
-                {
-                    //   prompt name
-                    //   prompt diet
-                    //   prompt when acquired
-                    //   prompt weighta
-                    //   prompt enclosure number
-
-                    var dino = new Dino();
-
-                    // create prompt for getting the dino Name 
-                    dino.Name = PromptForString("What is the Dinosaurs name?");
-                    // create prompt for getting the dino DietType
-                    dino.DietType = PromptForString("Is it a [Carnivore] or a [Herbivore]");
-                    // create prompt that logs the current date and time
-                    dino.WhenAcquired = DateTime.Now;
-                    // create prompt for getting the dino Weight
-                    dino.Weight = PromptForInterger("How much does the dinosaur weight in lbs? ");
-                    // create prompt for getting the dino EnclosureNumber
-                    dino.EnclosureNumber = PromptForInterger("What pen number is the dinosaur be held?");
-                    // define dino.DinoDescription from the input from the user
-                    dino.DinoDescription = ($"NAME: {dino.Name}. TYPE: {dino.DietType}. ACQUIRED: {dino.WhenAcquired}. WEIGHT: {dino.Weight}lbs. LOCATED IN PEN #{dino.EnclosureNumber}");
-
-
-                    // add the collections of values to the list
-                    dinos.Add(dino);
-                }
-                // else if input = T
-                else if (answer == "T")
-                {
-                    //   var dinoTransfer = prompt string for "what dino do you want to transfer?"
-                    var name = PromptForString("The name of the dinosaur you want to transfer: ");
-                    //   var dinoToTransfer = monster by name in monster list with the name equal to 
-                    //    the name to be transferred
-                    Dino foundDino = dinos.FirstOrDefault(dino => dino.Name == name);
-
-                    if (foundDino == null)
-                    {
-                        Console.WriteLine("There are no dinosaurs here by that name");
-                    }
-                    else
-                    {
-                        //   else newPenNum = prompt for string "what is {dinoToTransfer}'s new pen number?"
-                        var newEnclosureNum = PromptForInterger($"What is {name}'s new Enclosure number?");
-
-                        //   dinoTransfer.EnclosureNum = newPenNum
-                        foundDino.EnclosureNumber = newEnclosureNum;
-                    }
-
-                }
-                // else if input = R
-                else if (answer == "R")
-                {
-                    //   var dinoRemove = prompt string for "What dino are you looking for?"
-                    var name = PromptForString("What is the name of the dinosaur that you want remove?");
-                    //   var dinoToRemove = dino by name in dino list with the name equal to the name to be deleted
-                    Dino foundDino = dinos.FirstOrDefault(dino => dino.Name == name);
-
-                    //   if false/null
-                    if (foundDino == null)
-                    {
-                        //   return no dino by that name
-                        Console.WriteLine("There are no dinosaurs by that name");
-                    }
-                    else
-                    {
-                        //   else dino.remove dino to be deleted
-                        dinos.Remove(foundDino);
-                        //   write dino was removed
-                        Console.WriteLine($"{name} has been removed");
-                    }
-
-                }
-                // else if input = S
-                else if (answer == "S")
-                {
-                    var carnivore = dinos.Where(dino => dino.DietType == "carnivore").Count();
-                    var herbivore = dinos.Where(dino => dino.DietType == "herbivore").Count();
-
-                    var dinoType = $"There are {carnivore} Carnivore[s] and {herbivore} Herbivore[s]";
-
-                    Console.WriteLine(dinoType);
-                }
-
-
-
-
-
-                //   if null
-                //   return no dino by that name
-
-
-                // if dino found in park return true
-                // else return NOT FOUND
-
-
-
-                //   add properties to dino list
-
-
-
 
 
             }
