@@ -104,15 +104,13 @@ namespace JurasicPark
                     // if input = V
                     case "V":
                         // foreach dinosaur in list
-                        foreach (var monster in dinos)
+                        var WhenAcquired = dinos.OrderBy(monster => monster.WhenAcquired);
+                        foreach (var monster in WhenAcquired)
                         {
                             // Console.WriteLine("{name} is a {diet type}. I was received on {date.time}. It weights {weight}.
                             // It is located at {enclosure number}")
                             Console.WriteLine(monster.DinoDescription());
                         }
-                        var WhenAcquired = dinos.OrderBy(monster => monster.WhenAcquired);
-
-                        break; 
 
 
 
